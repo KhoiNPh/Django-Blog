@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<br><br><br><br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>{{ user_posts.count}} post{{ user_posts|pluralize}}</h4>
+            <hr>
+            {% for post in user_posts %}
+            <h5>{{post.title}}</h5>
+            <h6><small>{{post.created_on}}</small></h6>
+            <div class="col-12" style="text-align: right;">
+                <a href="{{post.get_absolute_url}}" style="background-color: orangered; color: white; font-size: 11px;"
+                    class="btn btn-sm">View</a>
+                <a href="{% url 'post_delete' request.user post.id %}" id="delete"
+                    style="background-color:orangered; color: white; font-size: 11px;" class="btn btn-sm">Delete</a>
+                <a href="{% url 'post_edit' request.user post.id %}"
+                    style="background-color: orangered; color: white; font-size: 11px;" class="btn btn-sm">Edit</a>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock %}

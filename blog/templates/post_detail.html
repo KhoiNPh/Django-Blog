@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <!-- Title -->
+            <img class="card-img-top" src="{{post.thumb.url}}" alt="">
+            <hr>
+            <h1> {{ post.title }} </h1>
+            <!-- Author -->
+            <h6 class="lead" style="color: orangered;">
+                by {{ post.author }}
+            </h6>
+            <hr>
+            <!-- Date/Time -->
+            <h6 class="text-muted">{{ post.created_on}}</h6>
+            <hr>
+            <!-- Post Content -->
+            <p class="card-text ">{{ post.content|safe }}</p>
+
+            <br><br>
+            <hr><br><br>
+            <div class="main-comment-section">
+                {% include 'comment.html' %}
+            </div> 
+            <br><br><br>
+        </div>
+        <!-- Sidebar-->
+        {% include 'sidebar.html' %}
+    </div>
+</div>
+
+{% endblock content %}

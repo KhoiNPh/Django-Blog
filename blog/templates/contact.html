@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <br><br><br><br><br><br><br>
+            {% load crispy_forms_tags %}
+            
+            <form method="post" style="margin-top: 1.3em; font-family: Raleway, sans-serif; font-size: 18px;">
+                {% csrf_token %}
+                {{ message_form | crispy }}
+                
+                <input type="submit" value="Send" class="btn" style="font-family: Raleway, sans-serif; font-size: 18px; color: white; background-color: orangered;">
+            </form>
+
+            <br><br><br>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

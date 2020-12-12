@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Subject: {{message.subject}}</h4>
+            <h6><small>From: {{message.email}}</small></h6>
+            <h6><small>Time: {{message.created_on}}</small></h6>
+            {% if message.is_replied %}
+            <span class="badge badge-primary">Replied</span>
+            {% endif %}
+            <hr>
+            <p style="text-align: justify; line-height: 200%;">{{message.content|safe}}</p>
+            <hr>
+            <div class="col-12" style="text-align: right;">
+                <a href="{% url 'message_delete' request.user message.id %}" id="delete"
+                    style="background-color: orangered; color: white; font-size: 11px;" class="btn btn-sm">Delete</a>
+                <a href="#" style="background-color: orangered; color: white; font-size: 11px;"
+                    class="btn btn-sm">Reply</a>
+                <a href="{% url 'message_forward' request.user message.id %}"
+                    style="background-color: orangered; color: white; font-size: 11px;" class="btn btn-sm">Forward</a>
+            </div>
+            <br><br><br>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

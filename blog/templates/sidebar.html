@@ -1,0 +1,73 @@
+{% block sidebar %}
+{% load static %}
+
+
+<div class="col-md-4">
+
+    <div class="card my-4">
+        <!-- <img class="card-img-top card-img-top-info" src="{% static 'img/sidebar_image.jpg'%}" alt="Card image cap">  https://youtu.be/Ju_aIaQSo9o -->
+        <iframe class="card-img-top card-img-top-info" src="https://www.youtube.com/embed/Ju_aIaQSo9o" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="card-body">
+            <h5><b>"We are...</b></h5>
+            <p>...a 7 years old couple. We're from Vietnam, and now we live in France.
+                This blog keeps our experiences, journeys and confessions about life, work, and each other.
+                <b>"</b>
+            </p>
+            <hr>
+            <a href="#" target="_blank">
+                <i class="fa fa-facebook fa-sm "></i>
+            </a>
+            <a href="#" target="_blank">
+                <i class="fa fa-linkedin fa-sm"></i>
+            </a>
+            <a href="#" target="_blank">
+                <i class="fa fa-youtube-play fa-sm"></i>
+            </a>
+            <a href="#" target="_blank">
+                <i class="fa fa-instagram fa-sm"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card my-4">
+        <div class="card-body">
+            <h5><b>Recent stories</b> </h5>
+            {% for sidebar in sidebar_list %}
+            <hr>
+            <a href="{% url 'post_detail' sidebar.slug  %}" style="color: black;">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{{sidebar.thumb.url}}" alt="" style="width:90px;height:60px;">
+                    </div>
+                    <div class="col-8">
+                        <h6>{{sidebar.title}}</h6>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card my-4">
+        <div class="card-body">
+            <h5><b>The moments</b> </h5>
+            <hr>
+            <iframe class="card-img-top card-img-top-info" src="https://www.youtube.com/embed/FUQheX3PSnY"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            <hr>
+            <iframe class="card-img-top card-img-top-info" src="https://www.youtube.com/embed/6Af6b_wyiwI"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            <hr>
+            <iframe class="card-img-top card-img-top-info" src="https://www.youtube.com/embed/DFjIi2hxxf0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock sidebar %}

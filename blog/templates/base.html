@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MÍT MEO - The BLOG of two lovers</title>
+    <link rel="icon" href="{% static 'img/logo2.png'%}" type="image/x-icon">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- <img src="{% static 'img/path_to_the_img' %}"> -->
+    <script src="{% static 'js/base.js' %}"></script>
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#delete').click(function () {
+                return confirm("Are you sure to delete this post?");
+            });
+        });
+
+    </script> -->
+
+</head>
+
+<body>
+
+    <!-- Navigation "{% url 'home' %}" -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}" style="color: black; font-family: Raleway, sans-serif;">
+                <h2><b>MÍT MEO</b></h2>
+                <h6>The BLOG of two lovers</h6>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg" href="{% url 'home' %}"
+                            style="color: black; font-family: Raleway, sans-serif;">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg" href="{% url 'about' %}"
+                            style="color: black; font-family: Raleway, sans-serif;">ABOUT</a>
+                    </li>
+                    {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg" href="{% url 'contact' %}"
+                            style="color: black; font-family: Raleway, sans-serif;">CONTACT</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-lg"
+                            style="color: orangered; font-family: Raleway, sans-serif;" href="#" id="navBarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>Hi, {{ request.user|capfirst }}</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navBarDropdown">
+                            <a class="dropdown-item" href="{% url 'post_create' request.user %}"
+                                style="color: orangered; font-family: Raleway, sans-serif; font-size: 15px;">CREATE A
+                                NEW POST</a>
+                            <a class="dropdown-item" href="{% url 'user_posts' request.user %}"
+                                style="color: orangered; font-family: Raleway, sans-serif; font-size: 15px;">MY
+                                POSTS</a>
+                            <a class="dropdown-item" href="{% url 'user_messages' request.user %}"
+                                style="color: orangered; font-family: Raleway, sans-serif; font-size: 15px;">MY
+                                MESSAGES</a>
+                            {% if request.user.is_superuser %}
+                            <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank"
+                                style="color: orangered; font-family: Raleway, sans-serif; font-size: 15px;">ADMIN</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'user_logout' %}"
+                                style="color: orangered; font-family: Raleway, sans-serif; font-size: 15px;">LOGOUT</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg" href="{% url 'user_login' %}"
+                            style="color: orangered; font-family: Raleway, sans-serif;">LOGIN</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    <!-- Content Goes here -->
+    {% endblock content %}
+
+    <!-- Footer -->
+    <footer class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-2">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'img/logo2.png'%}" alt="" style="width:110px;height:110px;">
+                    </a>
+                </div>
+                <div class="col-md-7">
+
+                    <a href="#" target="_blank">
+                        <i class="fa fa-facebook fa-sm"></i>
+                    </a>
+                    <a href="#" target="_blank">
+                        <i class="fa fa-linkedin fa-sm"></i>
+                    </a>
+                    <a href="#" target="_blank">
+                        <i class="fa fa-youtube-play fa-sm"></i>
+                    </a>
+                    <a href="#" target="_blank">
+                        <i class="fa fa-instagram fa-sm"></i>
+                    </a>
+                    <br><br>
+                    <p class="m-0 text-left "><small>&copy;<a href="{% url 'home' %}" style="color: black;"><u>MÍT
+                                    MEO</u></a> 2020</small></p>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+</body>
+
+</html>

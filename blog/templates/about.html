@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">  
+    <div class="row">       
+        <div class="col-md-8">
+            
+            {% for post in blogger_list %}
+            <br>
+            <!-- Title -->
+            <img class="card-img-top" src="{{post.thumb.url}}" alt="">
+            <hr>
+            <h1> {{ post.title }} </h1>
+            <!-- Author -->
+            <p class="lead text-primary">
+                by {{ post.author }}
+            </p>
+            <hr>
+            <!-- Date/Time -->
+            <h6 class="text-muted">{{ post.created_on}}</h6>
+            <hr>
+            <!-- Post Content -->
+            <p class="card-text " >{{ post.content|safe }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+
+        <!-- Sidebar-->
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    </div>
+</div>
+
+{% endblock content %}
