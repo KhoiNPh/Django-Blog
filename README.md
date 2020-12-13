@@ -1,2 +1,0 @@
-nguyen
-Django Blog
